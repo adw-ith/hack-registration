@@ -228,7 +228,7 @@ export default function Team() {
         )}
       </div>
       <div className="text-white flex flex-col-reverse w-full md:grid md:grid-cols-3 p-4">
-        <div className="col-span-2">
+        <div className="col-span-2 mt-8 md:mt-0">
           <div className="px-4 flex flex-col md:grid md:grid-cols-2 md:gap-x-4 gap-y-4">
             <div className="cols-span-1 p-8 min-w-50 rounded-sm bg-slate-800">
               <div className="flex justify-between">
