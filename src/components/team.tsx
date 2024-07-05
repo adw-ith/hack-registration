@@ -146,7 +146,7 @@ export default function Team() {
 
   const handleRegisterTeam = async () => {
     if (!checkAbstractFields()) {
-      console.warn("Abstract not filled");
+      window.alert("Abstract not filled");
       return;
     }
     //@ts-ignore
@@ -205,7 +205,7 @@ export default function Team() {
             </button>
           )}
           {register && (
-            <div className="text-xl text-green-400"> Regeistered !!! </div>
+            <div className="text-xl text-green-400"> Registered !!! </div>
           )}
         </div>
         {!register && (
