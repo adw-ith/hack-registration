@@ -2,32 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+*{
+  --dark-void: #151419;
+  --liquid-lava: #F56E0F;
+  --gluon-grey: #1B1B1E;
+  --slate-grey: #262626;
+  --dusty-grey: #878787;
+  --snow: #FBFBFB;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+
+
+body{
+  background: var(--dark-void);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+.text-lava{
+  color: var(--liquid-lava);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.text-snow{
+  color: var(--snow)
+}
+
+.text-dusty-grey{
+  color: var(--dusty-grey);
+}
+
+.bg-lava{
+  background: var(--liquid-lava);
+}
+
+.bg-void{
+  background: var(--dark-void);
+}
+
+.bg-slate{
+  background: var(--slate-grey);
+}
+
+.bg-dust{
+  background: var(--dusty-grey);
 }
