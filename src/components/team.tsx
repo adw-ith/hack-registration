@@ -3,6 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
+import Load from "./load";
 
 async function searchTeamByEmail(email: string) {
   try {
@@ -64,6 +65,7 @@ export default function Team() {
   const { user, loading } = useAuth();
   const [refresh, setRefresh] = useState(false);
   const [register, setRegister] = useState(false);
+  const [load, setLoad] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -169,6 +171,7 @@ export default function Team() {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
+        setLoad(true);
         //@ts-ignore
         const result = await searchTeamByEmail(user?.email);
         console.log(result);
@@ -177,6 +180,7 @@ export default function Team() {
         setTheme(result.team.abstract.theme);
         setDescription(result.team.abstract.description);
         setRegister(result.team.registered);
+        setLoad(false);
       } catch (error) {
         console.log(error);
       }
@@ -189,6 +193,7 @@ export default function Team() {
 
   return (
     <div className="flex flex-col min-h-dvh  relative   place-items-center">
+      {load && <Load></Load>}
       <div className="relative flex w-full border-b-2 border-slate-200">
         <div className="text-4xl text-slate-100 p-4 pt-20 pb-16 md:pt-32 md:p-16">
           Welcome{" "}
