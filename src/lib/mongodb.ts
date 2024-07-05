@@ -1,49 +1,40 @@
+// lib/mongodb.js
+
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGO_URI as string;
-let client: MongoClient | undefined;
-let clientPromise: Promise<MongoClient> | undefined;
+const uri = process.env.MONGO_URI;
+let client;
+let clientPromise;
 
 if (!uri) {
-  throw new Error(
-    "Please define the MONGO_URI environment variable inside .env.local"
-  );
+  console.log("no uri");
+  throw new Error("Please add your Mongo URI to .env.local");
 }
-
 if (process.env.NODE_ENV === "development") {
   //@ts-ignore
   if (!global._mongoClientPromise) {
+    //@ts-ignore
     client = new MongoClient(uri, {
       //@ts-ignore
+
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     //@ts-ignore
-
     global._mongoClientPromise = client.connect();
   }
   //@ts-ignore
-
   clientPromise = global._mongoClientPromise;
 } else {
+  // In production mode, it's best to not use a global variable
+  //@ts-ignore
   client = new MongoClient(uri, {
     //@ts-ignore
+
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
   clientPromise = client.connect();
-}
-
-// Function to check if MongoDB connection is established
-export async function isMongoConnected(): Promise<boolean> {
-  try {
-    await clientPromise; // Wait for the client promise to resolve
-    //@ts-ignore
-    return client?.isConnected() || false; // Check if client is connected
-  } catch (error) {
-    console.error("Error checking MongoDB connection:", error);
-    return false;
-  }
 }
 
 export default clientPromise;

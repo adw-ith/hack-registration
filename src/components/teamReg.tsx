@@ -4,7 +4,13 @@ import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
 import { useState } from "react";
 
-export default function TeamReg() {
+export default function TeamReg({
+  state,
+  onStateChange,
+}: {
+  state: any;
+  onStateChange: (newState: any) => void;
+}) {
   const { user, loading } = useAuth();
 
   const [name, setName] = useState("");
@@ -52,6 +58,7 @@ export default function TeamReg() {
         });
 
         console.log(response.data);
+        onStateChange(true);
       } catch (error) {
         console.error("Error creating team:", error);
         // Handle error, show error message, etc.
@@ -60,7 +67,7 @@ export default function TeamReg() {
   };
 
   return (
-    <div className="flex flex-col p-8">
+    <div className="flex flex-col p-8 pt-20">
       <form
         onSubmit={handleSubmit}
         className="flex border-2 border-[#F56E0F] p-8 rounded-lg flex-col text-base gap-y-4 h-full place-items-center text-white"
@@ -184,6 +191,7 @@ export default function TeamReg() {
             className="bg-void focus:bg-slate-800 focus-within:bg-slate-800 focus-visible:bg-slate-800 rounded-md h-10 border border-slate-700"
             type="text"
             name="teamName"
+            maxLength={32}
             value={tname}
             onChange={(e) => setTname(e.target.value)}
             required

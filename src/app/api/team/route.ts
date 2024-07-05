@@ -14,6 +14,11 @@ export async function POST(req: any) {
     team,
     members,
     registered: false,
+    abstract: {
+      projectTitle: "",
+      theme: "",
+      description: "",
+    },
   };
 
   // Check if members[0].email already exists in any team
