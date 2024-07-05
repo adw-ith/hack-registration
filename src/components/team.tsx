@@ -195,37 +195,39 @@ export default function Team() {
             }
           </span>
         </div>
-        <div className="absolute flex gap-x-2 text-white bottom-0 ml-1 mb-1 left-0  md:ml-[4rem] ">
+        <div className="absolute flex gap-x-2 bottom-0 w-full">
+          <div className="flex  gap-x-2 text-white ml-1 mb-1  md:ml-[4rem] ">
+            {!register && (
+              <button
+                onClick={handleRegisterTeam}
+                className=" p-1 px-4 max-h-[40px] min-w-[100px] rounded-sm  bg-blue-600  border-2 border-blue-600 hover:bg-transparent "
+              >
+                Register
+              </button>
+            )}
+            {register && (
+              <div className="text-xl text-green-400"> Registered !!! </div>
+            )}
+          </div>
           {!register && (
-            <button
-              onClick={handleRegisterTeam}
-              className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#3d3a3a]  border-2 border-[#3d3a3a] hover:bg-transparent "
-            >
-              Register
-            </button>
-          )}
-          {register && (
-            <div className="text-xl text-green-400"> Registered !!! </div>
+            <div className="flex gap-x-2 text-white ml-auto mb-1 mr-1   md:mr-[2rem] ">
+              <button
+                onClick={() => setAbstract(true)}
+                className=" p-1 sm:px-4 min-w-[100px] max-h-[40px] rounded-sm  bg-[#3d3a3a]  border-2 border-[#3d3a3a] hover:bg-transparent "
+              >
+                {" "}
+                Add/Edit Abstract
+              </button>
+              <button
+                onClick={() => setAddMember(true)}
+                className=" p-1 sm:px-4 min-w-[100px] max-h-[40px] rounded-sm  bg-[#F56E0F]  border-2 border-[#F56E0F] hover:bg-transparent hover:text-[#F56E0F]"
+              >
+                {" "}
+                <span className="text-lg font-bold"> + </span> add member
+              </button>
+            </div>
           )}
         </div>
-        {!register && (
-          <div className="absolute flex gap-x-2 text-white bottom-0 ml-auto mb-1 mr-1 right-0  md:mr-[2rem] ">
-            <button
-              onClick={() => setAbstract(true)}
-              className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#3d3a3a]  border-2 border-[#3d3a3a] hover:bg-transparent "
-            >
-              {" "}
-              Add/Edit Abstract
-            </button>
-            <button
-              onClick={() => setAddMember(true)}
-              className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#F56E0F]  border-2 border-[#F56E0F] hover:bg-transparent hover:text-[#F56E0F]"
-            >
-              {" "}
-              <span className="text-lg font-bold"> + </span> add member
-            </button>
-          </div>
-        )}
       </div>
       <div className="text-white flex flex-col-reverse w-full md:grid md:grid-cols-3 p-4">
         <div className="col-span-2 mt-8 md:mt-0">
