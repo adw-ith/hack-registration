@@ -17,10 +17,10 @@ export default function Navbar() {
       </div>
       <div className="col-span-1 flex justify-end gap-x-8">
         <span className=" hover:text-orange-500">
-          <Link href="/">Home</Link>
+          <Link href="hack24.ieemace.org">Home</Link>
         </span>
         <span className=" hover:text-orange-500">
-          <Link href="/">Contact</Link>
+          <Link href="hack24.ieeemace.org/#contact">Contact</Link>
         </span>
       </div>
     </div>

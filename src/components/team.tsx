@@ -14,6 +14,16 @@ async function searchTeamByEmail(email: string) {
   }
 }
 
+const registerTeam = async (teamName: string) => {
+  try {
+    const response = await axios.put("/api/register", { team: teamName });
+    return response.data;
+  } catch (error) {
+    console.error("Error registering team:", error);
+    throw error;
+  }
+};
+
 async function addMemberToTeam(team: any, member: any) {
   try {
     const response = await axios.put("/api/addteammate", { team, member });
@@ -52,7 +62,8 @@ export default function Team() {
   const [theme, setTheme] = useState("");
   const [description, setDescription] = useState("");
   const { user, loading } = useAuth();
-  const [refresh, setRefresh] = useState(false); // New state variable for tracking changes
+  const [refresh, setRefresh] = useState(false);
+  const [register, setRegister] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -113,12 +124,41 @@ export default function Team() {
       console.log(response.data.message);
       setRefresh((prev) => !prev);
       // Reset the form or provide feedback to the user
-      setProjectTitle("");
-      setTheme("");
-      setDescription("");
       setAbstract(false);
     } catch (error: any) {
       console.error("Error adding abstract:", error.response?.data?.message);
+    }
+  };
+
+  const checkAbstractFields = () => {
+    //@ts-ignore
+    if (!team || !team.abstract) {
+      return false;
+    }
+    //@ts-ignore
+    const { projectTitle, theme, description } = team.abstract;
+    if (projectTitle === "" || theme === "" || description === "") {
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleRegisterTeam = async () => {
+    if (!checkAbstractFields()) {
+      console.warn("Abstract not filled");
+      return;
+    }
+    //@ts-ignore
+    const teamName = team?.team;
+    try {
+      const result = await registerTeam(teamName);
+      setRefresh((prev) => !prev);
+      console.log("Team registered successfully:", result);
+      // Handle success
+    } catch (error) {
+      console.error("Error registering team:", error);
+      // Handle error
     }
   };
 
@@ -129,6 +169,10 @@ export default function Team() {
         const result = await searchTeamByEmail(user?.email);
         console.log(result);
         setTeam(result.team);
+        setProjectTitle(result.team.abstract.projectTitle);
+        setTheme(result.team.abstract.theme);
+        setDescription(result.team.abstract.description);
+        setRegister(result.team.registered);
       } catch (error) {
         console.log(error);
       }
@@ -137,7 +181,7 @@ export default function Team() {
     if (user?.email) {
       fetchTeam();
     }
-  }, [user?.email, refresh]); // Include refresh in dependency array
+  }, [user?.email, refresh]);
 
   return (
     <div className="flex flex-col min-h-dvh  relative   place-items-center">
@@ -152,26 +196,36 @@ export default function Team() {
           </span>
         </div>
         <div className="absolute flex gap-x-2 text-white bottom-0 ml-1 mb-1 left-0  md:ml-[4rem] ">
-          <button className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#3d3a3a]  border-2 border-[#3d3a3a] hover:bg-transparent ">
-            Register
-          </button>
+          {!register && (
+            <button
+              onClick={handleRegisterTeam}
+              className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#3d3a3a]  border-2 border-[#3d3a3a] hover:bg-transparent "
+            >
+              Register
+            </button>
+          )}
+          {register && (
+            <div className="text-xl text-green-400"> Regeistered !!! </div>
+          )}
         </div>
-        <div className="absolute flex gap-x-2 text-white bottom-0 ml-auto mb-1 mr-1 right-0  md:mr-[2rem] ">
-          <button
-            onClick={() => setAbstract(true)}
-            className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#3d3a3a]  border-2 border-[#3d3a3a] hover:bg-transparent "
-          >
-            {" "}
-            Add/Edit Abstract
-          </button>
-          <button
-            onClick={() => setAddMember(true)}
-            className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#F56E0F]  border-2 border-[#F56E0F] hover:bg-transparent hover:text-[#F56E0F]"
-          >
-            {" "}
-            <span className="text-lg font-bold"> + </span> add member
-          </button>
-        </div>
+        {!register && (
+          <div className="absolute flex gap-x-2 text-white bottom-0 ml-auto mb-1 mr-1 right-0  md:mr-[2rem] ">
+            <button
+              onClick={() => setAbstract(true)}
+              className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#3d3a3a]  border-2 border-[#3d3a3a] hover:bg-transparent "
+            >
+              {" "}
+              Add/Edit Abstract
+            </button>
+            <button
+              onClick={() => setAddMember(true)}
+              className=" p-1 px-4 min-w-[100px] rounded-sm  bg-[#F56E0F]  border-2 border-[#F56E0F] hover:bg-transparent hover:text-[#F56E0F]"
+            >
+              {" "}
+              <span className="text-lg font-bold"> + </span> add member
+            </button>
+          </div>
+        )}
       </div>
       <div className="text-white flex flex-col-reverse w-full md:grid md:grid-cols-3 p-4">
         <div className="col-span-2">
@@ -285,7 +339,40 @@ export default function Team() {
             }
           </div>
         </div>
-        <div className="col-span-1">loki</div>
+        <div className="col-span-1">
+          <div className="max-h-[60vh] overflow-y-scroll  p-4 md:p-8 bg-slate-800 ">
+            <div className="text-xl py-2 pt-4">Project Title</div>
+            <div className="text-lg text-slate-300">
+              {
+                //@ts-ignore
+                team?.abstract?.projectTitle === ""
+                  ? "N/A"
+                  : //@ts-ignore
+                    team?.abstract?.projectTitle ?? ""
+              }
+            </div>
+            <div className="text-xl py-2 pt-4">Project Theme</div>
+            <div className="text-lg text-slate-300">
+              {
+                //@ts-ignore
+                team?.abstract?.theme === ""
+                  ? "N/A"
+                  : //@ts-ignore
+                    team?.abstract?.theme ?? ""
+              }
+            </div>
+            <div className="text-xl py-2 pt-4">Project Description</div>
+            <div className="text-sm text-slate-300">
+              {
+                //@ts-ignore
+                team?.abstract?.description === ""
+                  ? "N/A"
+                  : //@ts-ignore
+                    team?.abstract?.description ?? ""
+              }
+            </div>
+          </div>
+        </div>
       </div>
       {addMember && (
         <div className="form mt-20 absolute min-w-80 md:min-w-1/2 md:w-1/2 bg-[#262626] px-16 py-8 shadow-gray-800 shadow-lg rounded">
@@ -495,6 +582,7 @@ export default function Team() {
               <textarea
                 name="description"
                 rows={10}
+                required
                 maxLength={800}
                 placeholder="Project Description"
                 value={description}
