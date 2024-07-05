@@ -149,6 +149,10 @@ export default function Team() {
       window.alert("Abstract not filled");
       return;
     }
+    const confirmRegister = window.confirm(
+      "Are you sure you want to Register now ? You cannot make any chnages after this."
+    );
+    if (!confirmRegister) return;
     //@ts-ignore
     const teamName = team?.team;
     try {
