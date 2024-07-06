@@ -1,7 +1,16 @@
 import Navbar from "@/components/navbar";
 import Signin from "@/components/signin";
 
-const Instructions = ["", "", "", "", "", "", "", "", "", "", ""];
+const Instructions = [
+  "Only the team leader should register for the hackathon on behalf of the team.ring registration, the team leader must add all team members. There is no need for separate registrations for other team members.",
+  "IEEE membership is not required to participate in the hackathon.If you are an IEEE member, please provide your IEEE member number during registration.",
+  "Choose a theme from the provided options. Upload an abstract that corresponds to the selected theme. This abstract should outline your project idea, approach and impact.",
+  "Each team should consist of 1 to 4 members. Ensure all team members are added during the registration process.",
+  "Shortlisted teams will receive problem statements based on their selected theme for the offline hackathon.",
+  "Use of ChatGPT or any other form of plagiarism is strictly prohibited and will lead to immediate disqualification.",
+  "Make sure to review all registration details before submitting the form.",
+  "If you have any questions or encounter issues during registration, please contact: email: hack.macesb@gmail.com",
+];
 
 export default function Home() {
   return (
@@ -14,8 +23,7 @@ export default function Home() {
             <div className="p-4">
               {Instructions.map((ins, index) => (
                 <p key={index} className="text-base">
-                  {index + 1}. Lorem ipsum dolor, sit amet consectetur
-                  adipisicing elit. Rerum, expedita!
+                  {index + 1}. {ins}
                 </p>
               ))}
             </div>

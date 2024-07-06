@@ -152,7 +152,7 @@ export default function Team() {
       return;
     }
     const confirmRegister = window.confirm(
-      "Are you sure you want to Register now ? You cannot make any chnages after this."
+      "Are you sure you want to Register now ? You cannot make any changes after this."
     );
     if (!confirmRegister) return;
     //@ts-ignore
