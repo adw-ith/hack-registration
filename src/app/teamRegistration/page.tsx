@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/footer";
 import Load from "@/components/load";
 import Navbar from "@/components/navbar";
 import ProtectedRoute from "@/components/ProtectedRoute";
@@ -52,6 +53,7 @@ export default function TeamRegisteration() {
         ) : (
           <Team></Team>
         )}
+        <Footer></Footer>
       </div>
     </ProtectedRoute>
   );

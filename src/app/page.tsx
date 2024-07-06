@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import Signin from "@/components/signin";
 
@@ -35,6 +36,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </main>
   );
 }
