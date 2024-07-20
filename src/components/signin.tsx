@@ -24,6 +24,8 @@ export default function Signin() {
     e.preventDefault();
     if (password != confpassword) {
       console.log("password mismatch");
+      window.alert("password mismatch");
+
       return;
     }
     try {
@@ -34,6 +36,7 @@ export default function Signin() {
       ref.current.click();
     } catch (error: any) {
       console.error("Error signing up:", error.message);
+      window.alert(error.message);
     }
   };
 
@@ -46,6 +49,7 @@ export default function Signin() {
       ref.current.click();
     } catch (error: any) {
       console.error("Error signing in:", error.message);
+      window.alert(error.message);
     }
   };
 
@@ -57,8 +61,9 @@ export default function Signin() {
 
       //@ts-ignore
       ref.current.click();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error signing in: ", error);
+      window.alert(error.message);
     }
   };
 
@@ -70,6 +75,7 @@ export default function Signin() {
       ref.current.click();
     } catch (error: any) {
       console.error("Error signing in with GitHub:", error.message);
+      window.alert(error.message);
       throw error;
     }
   };

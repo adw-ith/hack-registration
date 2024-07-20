@@ -59,8 +59,10 @@ export default function TeamReg({
 
         console.log(response.data);
         onStateChange(true);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error creating team:", error);
+        window.alert(error.message);
+
         // Handle error, show error message, etc.
       }
     }
