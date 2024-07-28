@@ -2,52 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   --dark-void: #151419;
-  --liquid-lava: #F56E0F;
-  --gluon-grey: #1B1B1E;
+  --liquid-lava: #f56e0f;
+  --gluon-grey: #1b1b1e;
   --slate-grey: #262626;
   --dusty-grey: #878787;
-  --snow: #FBFBFB;
+  --snow: #fbfbfb;
   overflow-x: hidden;
 }
 
-
-
-
-body{
+body {
   background: var(--dark-void);
 }
 
+h2::-webkit-scrollbar {
+  width: 0;
+}
 
-.text-lava{
+.text-lava {
   color: var(--liquid-lava);
 }
 
-.text-snow{
-  color: var(--snow)
+.text-snow {
+  color: var(--snow);
 }
 
-.text-dusty-grey{
+.text-dusty-grey {
   color: var(--dusty-grey);
 }
 
-.bg-lava{
+.bg-lava {
   background: var(--liquid-lava);
 }
 
-.bg-void{
+.bg-void {
   background: var(--dark-void);
 }
 
-.bg-slate{
+.bg-slate {
   background: var(--slate-grey);
 }
 
-.bg-dust{
+.bg-dust {
   background: var(--dusty-grey);
 }
-
 
 /* HTML: <div class="loader"></div> */
 .loader {
@@ -67,14 +66,32 @@ body{
   animation-delay: -1.25s;
   border-radius: 0;
 }
-@keyframes l5{
-  0%    {inset:0    35px 35px 0   }
-  12.5% {inset:0    35px 0    0   }
-  25%   {inset:35px 35px 0    0   }
-  37.5% {inset:35px 0    0    0   }
-  50%   {inset:35px 0    0    35px}
-  62.5% {inset:0    0    0    35px}
-  75%   {inset:0    0    35px 35px}
-  87.5% {inset:0    0    35px 0   }
-  100%  {inset:0    35px 35px 0   }
+@keyframes l5 {
+  0% {
+    inset: 0 35px 35px 0;
+  }
+  12.5% {
+    inset: 0 35px 0 0;
+  }
+  25% {
+    inset: 35px 35px 0 0;
+  }
+  37.5% {
+    inset: 35px 0 0 0;
+  }
+  50% {
+    inset: 35px 0 0 35px;
+  }
+  62.5% {
+    inset: 0 0 0 35px;
+  }
+  75% {
+    inset: 0 0 35px 35px;
+  }
+  87.5% {
+    inset: 0 0 35px 0;
+  }
+  100% {
+    inset: 0 35px 35px 0;
+  }
 }

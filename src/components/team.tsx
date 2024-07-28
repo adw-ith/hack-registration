@@ -4,6 +4,8 @@ import { useAuth } from "@/context/AuthContext";
 import axios from "axios";
 import { FormEvent, useEffect, useState } from "react";
 import Load from "./load";
+import IDCard from "./id";
+import Link from "next/link";
 
 async function searchTeamByEmail(email: string) {
   try {
@@ -203,7 +205,13 @@ export default function Team() {
               team?.team
             }
           </span>
+          {!register && (
+            <div className="text-red-400 text-lg">
+              Registration Incomplete!!!
+            </div>
+          )}
         </div>
+
         <div className="absolute flex gap-x-2 bottom-0 w-full">
           <div className="flex  gap-x-2 text-white ml-1 mb-1  md:ml-[4rem] ">
             {!register && (
@@ -276,6 +284,33 @@ export default function Team() {
                     team?.members[0].contactNumber
                   }
                 </li>
+                {register && (
+                  <Link
+                    target="_blank"
+                    href={`/id?name=${encodeURIComponent(
+                      //@ts-ignore
+                      team?.members[0]?.name || ""
+                    )}`}
+                  >
+                    <button className="flex mt-4 items-center text-xs md:text-base gap-x-1 md:gap-x-2 rounded-sm p-1 px-2 md:px-4 border-blue-500 border-2 text-blue-500 hover:bg-blue-500 hover:text-[#20262E] bg-transparent">
+                      <span>Download</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-4 h-4 md:w-6 md:h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 4v16m8-8H4"
+                        />
+                      </svg>
+                    </button>
+                  </Link>
+                )}
               </ul>
             </div>
             {
@@ -343,6 +378,33 @@ export default function Team() {
                               member.contact
                             }
                           </li>
+                          {register && (
+                            <Link
+                              target="_blank"
+                              href={`/id?name=${encodeURIComponent(
+                                //@ts-ignore
+                                member.name || ""
+                              )}`}
+                            >
+                              <button className="flex mt-4 items-center text-xs md:text-base gap-x-1 md:gap-x-2 rounded-sm p-1 px-2 md:px-4 border-blue-500 border-2 text-blue-500 hover:bg-blue-500 hover:text-[#20262E] bg-transparent">
+                                <span>Download</span>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                  strokeWidth={2}
+                                  stroke="currentColor"
+                                  className="w-4 h-4 md:w-6 md:h-6"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 4v16m8-8H4"
+                                  />
+                                </svg>
+                              </button>
+                            </Link>
+                          )}
                         </ul>
                       </div>
                     )

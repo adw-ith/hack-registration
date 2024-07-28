@@ -14,7 +14,7 @@ export default function Footer() {
           </a>
         </button>
       </div>
-      <div className="bg-[#8c8c8c] p-1 text-center text-sm text-slate-200">
+      <div className="bg-[#8c8c8c] p-1 text-center text-sm text-slate-600">
         Developed by .hack24 web team.{" "}
         <span className="text-slate-800 hover:text-slate-600">
           <a target="_blank" href="https://ieeemace.org/">
