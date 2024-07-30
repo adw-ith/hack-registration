@@ -12,7 +12,7 @@ export default function TeamReg({
   onStateChange: (newState: any) => void;
 }) {
   const { user, loading } = useAuth();
-
+  const [check, setCheck] = useState(false);
   const [name, setName] = useState("");
   const [college, setCollege] = useState("");
   const [branch, setBranch] = useState("");
@@ -40,6 +40,7 @@ export default function TeamReg({
       setWarning("");
 
       try {
+        setCheck(true);
         const email = user?.email;
         const response = await axios.post("/api/team", {
           team: tname,
@@ -59,8 +60,10 @@ export default function TeamReg({
 
         console.log(response.data);
         onStateChange(true);
+        setCheck(false);
       } catch (error: any) {
         console.error("Error creating team:", error);
+        setCheck(false);
         window.alert(error.message);
 
         // Handle error, show error message, etc.
@@ -200,6 +203,7 @@ export default function TeamReg({
           />
         </div>
         <button
+          disabled={check}
           type="submit"
           className="bg-[#F56E0F] hover:bg-[#e95b00] text-white font-bold py-2 mt-8 px-4 rounded"
         >
