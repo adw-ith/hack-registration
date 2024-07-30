@@ -179,7 +179,7 @@ export default function TeamReg({
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="IeeeId">IEEE ID</label>
+            <label htmlFor="IeeeId">IEEE ID(optional)</label>
             <input
               className="bg-void focus:bg-slate-800 focus-within:bg-slate-800 focus-visible:bg-slate-800 rounded-md h-10 border border-slate-700"
               type="text"
