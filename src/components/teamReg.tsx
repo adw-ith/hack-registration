@@ -36,6 +36,7 @@ export default function TeamReg({
       !tname
     ) {
       setWarning("Please fill out all required fields.");
+      return;
     } else {
       setWarning("");
 
