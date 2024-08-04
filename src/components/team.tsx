@@ -656,7 +656,7 @@ export default function Team() {
                 name="description"
                 rows={10}
                 required
-                maxLength={800}
+                maxLength={2000}
                 placeholder="Project Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}

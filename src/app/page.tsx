@@ -10,7 +10,7 @@ const Instructions = [
   "Shortlisted teams will receive problem statements based on their selected theme for the offline hackathon.",
   "Use of ChatGPT or any other form of plagiarism is strictly prohibited and will lead to immediate disqualification.",
   "Make sure to review all registration details before submitting the form.",
-  "The abstract should be no longer than 800 characters",
+  "The abstract should be no longer than 2000 characters",
   "There is no registration fee",
   "If you have any questions or encounter issues during registration, please contact: email: hack.macesb@gmail.com",
 ];
