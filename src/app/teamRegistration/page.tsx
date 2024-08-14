@@ -1,5 +1,6 @@
 "use client";
 
+import Closed from "@/components/closed";
 import Footer from "@/components/footer";
 import Load from "@/components/load";
 import Navbar from "@/components/navbar";
@@ -49,7 +50,8 @@ export default function TeamRegisteration() {
       <div>
         <Navbar></Navbar>
         {!teamExist ? (
-          <TeamReg state={teamExist} onStateChange={setTeamExist}></TeamReg>
+          // <TeamReg state={teamExist} onStateChange={setTeamExist}></TeamReg>
+          <Closed />
         ) : (
           <Team></Team>
         )}

@@ -148,27 +148,27 @@ export default function Team() {
     return true;
   };
 
-  const handleRegisterTeam = async () => {
-    if (!checkAbstractFields()) {
-      window.alert("Abstract not filled");
-      return;
-    }
-    const confirmRegister = window.confirm(
-      "Are you sure you want to Register now ? You cannot make any changes after this."
-    );
-    if (!confirmRegister) return;
-    //@ts-ignore
-    const teamName = team?.team;
-    try {
-      const result = await registerTeam(teamName);
-      setRefresh((prev) => !prev);
-      console.log("Team registered successfully:", result);
-      // Handle success
-    } catch (error) {
-      console.error("Error registering team:", error);
-      // Handle error
-    }
-  };
+  // const handleRegisterTeam = async () => {
+  //   if (!checkAbstractFields()) {
+  //     window.alert("Abstract not filled");
+  //     return;
+  //   }
+  //   const confirmRegister = window.confirm(
+  //     "Are you sure you want to Register now ? You cannot make any changes after this."
+  //   );
+  //   if (!confirmRegister) return;
+  //   //@ts-ignore
+  //   const teamName = team?.team;
+  //   try {
+  //     const result = await registerTeam(teamName);
+  //     setRefresh((prev) => !prev);
+  //     console.log("Team registered successfully:", result);
+  //     // Handle success
+  //   } catch (error) {
+  //     console.error("Error registering team:", error);
+  //     // Handle error
+  //   }
+  // };
 
   useEffect(() => {
     const fetchTeam = async () => {
@@ -206,27 +206,30 @@ export default function Team() {
             }
           </span>
           {!register && (
-            <div className="text-red-400 text-lg">
-              Registration Incomplete!!!
+            <div>
+              <div className="text-red-400 text-lg">Registration Closed!!!</div>
+              <div className="text-xl text-red-300">
+                You did not complete the Registration in Time
+              </div>
             </div>
           )}
         </div>
 
         <div className="absolute flex gap-x-2 bottom-0 w-full">
           <div className="flex  gap-x-2 text-white ml-1 mb-1  md:ml-[4rem] ">
-            {!register && (
+            {/* {!register && (
               <button
                 onClick={handleRegisterTeam}
                 className=" p-1 px-4 max-h-[40px] min-w-[100px] rounded-sm  bg-blue-600  border-2 border-blue-600 hover:bg-transparent "
               >
                 Register
               </button>
-            )}
+            )} */}
             {register && (
               <div className="text-xl text-green-400"> Registered !!! </div>
             )}
           </div>
-          {!register && (
+          {/* {!register && (
             <div className="flex gap-x-2 text-white ml-auto mb-1 mr-1   md:mr-[2rem] ">
               <button
                 onClick={() => setAbstract(true)}
@@ -243,7 +246,7 @@ export default function Team() {
                 <span className="text-lg font-bold"> + </span> add member
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <div className="text-white flex flex-col-reverse w-full md:grid md:grid-cols-3 p-4">
@@ -329,22 +332,24 @@ export default function Team() {
                             Team member {index + 1}
                           </h3>
                           <div>
-                            <svg
-                              className="h-6 w-6 text-red-500"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              strokeWidth="2"
-                              stroke="currentColor"
-                              fill="none"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              onClick={() => handleDelete(member.email)}
-                            >
-                              <path stroke="none" d="M0 0h24v24H0z" />
-                              <circle cx="12" cy="12" r="9" />
-                              <path d="M10 10l4 4m0 -4l-4 4" />
-                            </svg>
+                            {/* {!register && (
+                              <svg
+                                className="h-6 w-6 text-red-500"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                strokeWidth="2"
+                                stroke="currentColor"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                onClick={() => handleDelete(member.email)}
+                              >
+                                <path stroke="none" d="M0 0h24v24H0z" />
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M10 10l4 4m0 -4l-4 4" />
+                              </svg>
+                            )} */}
                           </div>
                         </div>
                         <ul className="px-6">
